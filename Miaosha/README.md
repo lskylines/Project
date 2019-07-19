@@ -16,10 +16,10 @@
 ***
 ### 部分截图
 ####秒杀详情页
-<img src="/showImg/detail.png">
+<img src="showImg/detail.png">
 
 ####秒杀成功弹窗页
-<img src="/showImg/miaoshaSuccess.png">
+<img src="showImg/miaoshaSuccess.png">
 
 ####秒杀成功跳转页
-<img src="/showImg/success.png">
+<img src="showImg/success.png">
