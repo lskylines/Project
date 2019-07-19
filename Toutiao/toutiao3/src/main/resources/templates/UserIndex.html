@@ -1,0 +1,86 @@
+#parse("header.html")
+
+<div id="main">
+
+
+    <div class="container" id="daily">
+        <div class="jscroll-inner">
+            <div class="daily">
+
+                #set($cur_date = '')
+                #foreach($vo in ${pageInfo.list})
+                #if ($cur_date != $date.format('yyyy-MM-dd', $vo.createdDate))
+                #if ($foreach.index > 0)
+            </div> ## 上一个要收尾
+            #end
+            #set($cur_date = $date.format('yyyy-MM-dd', $vo.createdDate))
+            <h3 class="date">
+                <i class="fa icon-calendar"></i>
+                <span>头条资讯 &nbsp; $date.format('yyyy-MM-dd', $vo.createdDate)</span>
+            </h3>
+
+            <div class="posts">
+                #end
+                <div class="post">
+                    <div class="votebar">
+                        #if ($vo.like > 0)
+                        <button class="click-like up pressed" data-id="$!{vo.id}" title="赞同"><i class="vote-arrow"></i><span class="count">$!{vo.likeCount}</span></button>
+                        #else
+                        <button class="click-like up" data-id="$!{vo.id}" title="赞同"><i class="vote-arrow"></i><span class="count">$!{vo.likeCount}</span></button>
+                        #end
+                        #if($vo.like < 0)
+                        <button class="click-dislike down pressed" data-id="$!{vo.id}" title="反对"><i class="vote-arrow"></i></button>
+                        #else
+                        <button class="click-dislike down" data-id="$!{vo.id}" title="反对"><i class="vote-arrow"></i></button>
+                        #end
+                    </div>
+                    <div class="content" data-url="/news/$!{vo.id}">
+                        <div >
+                            <a href="/news/$!{vo.id}"><img class="content-img"  src="$!{vo.image}" alt="图片未加载出来" width="10px" height="10px"></a>
+                        </div>
+                        <div class="content-main">
+                            <h3 class="title">
+                                <a target="_blank" rel="external nofollow" href="/news/$!{vo.id}">$!{vo.title}</a>
+                            </h3>
+                            <div class="meta">
+                                $!{vo.link}
+                                <span>
+                                            <i class="fa icon-comment"></i> $!{vo.commentCount}
+                                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <a href="/user/$!{vo.id}/"><img width="32" class="img-circle" src="/$!{vo.headUrl}"></a>
+                        </div>
+
+
+                    </div>
+
+                    <div class="subject-name">来自 <a href="/user/$!{vo.userId}/1">$!{vo.name}</a></div>
+                </div>
+
+
+
+                #if ($foreach.count == $pageInfo.list.size()) ##最后有个元素要收尾
+            </div>
+            #end
+
+            #end
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+#if ($pop)
+<script>
+    window.loginpop = $!{pop};
+</script>
+#end
+
+#parse("Userfooter.html")

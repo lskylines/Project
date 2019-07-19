@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-6">
+        当前第${pageInfo.pageNum}页,总${pageInfo.Pages}页,总${pageInfo.total}条记录
+    </div>
+    <div class="col-md-6">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li><a href="?pageNo=1">首页</a></li>
+                #if(${pageInfo.hasPreviousPage})
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                #end
+                #foreach(${item} in ${pageInfo.NavigatepageNums})
+                <li><a href="/user/$!{userId}/${item}">${item}</a></li>
+                #end
+                #if(${pageInfo.hasNextPage})
+                <li>
+                    #set($pagePost=${pageInfo.pageNum}+1)
+                    <a href="/user/$!{userId}/${pagePost}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                #end
+                <li><a href="/user/$!{userId}/$!{pageInfo.Pages}">末页</a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<footer>
+    <div class="container">
+        <p class="text-center">
+            <a href="http://nowcoder.com/about">关于我们</a>
+            <a href="http://nowcoder.com/download">头条客户端</a>
+        </p>
+        <p class="text-center">© 2013-2016 头条八卦</p>
+    </div>
+
+</footer>
+
+<div id="quick-download">
+    <button type="button" class="close-link btn-link" data-toggle="modal" data-target="#quick-download-app-modal"><i class="fa icon-times-circle"></i></button>
+
+    <a class="download-link" href="http://nowcoder.com/download">
+        <h3>头条资讯</h3>
+        <h4>学习分享平台</h4>
+        <button type="button" class="btn btn-info btn-sm">下载 APP</button>
+    </a>
+
+    <div class="modal fade" id="quick-download-app-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">提示</div>
+                <div class="modal-body">
+                    <div class="checkbox">
+                        <label class="i-checks">
+                            <input id="already-installed" type="checkbox"><i></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-block btn-default" id="close-quick-download-app-modal">关 闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body></html>
