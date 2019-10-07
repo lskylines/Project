@@ -22,6 +22,9 @@ public class UserService {
     private UserDAO userDAo;
     @Autowired
     private LoginTicketDAO loginTicketDAO;
+    public User getUser(int id){
+        return userDAo.selectById(id);
+    }
 
     public int addUser(User user){
         return userDAo.addUser(user);

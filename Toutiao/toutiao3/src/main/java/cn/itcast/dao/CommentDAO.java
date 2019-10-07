@@ -22,10 +22,10 @@ public interface CommentDAO {
     @Insert({"INSERT INTO ", TABLE_NAME, "(", INSERT_FIELDS, ") VALUES(#{content}, #{userId}, #{entityId}, #{entityType}, #{createdDate}, #{status})"})
     int addComment(Comment comment);
 
-    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE entity_id=#{entityId} AND entity_type=#{entityType} ORDER BY created_date DESC"})
+    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE entity_id=#{entityId} AND entity_type=#{entityType} AND status=0 ORDER BY created_date DESC"})
     List<Comment> selectByEntityIdAndEntityType(@Param("entityId") int entityId,@Param("entityType") int entityType);
 
-    @Select({"SELECT COUNT(*) FROM" ,TABLE_NAME, " WHERE entity_id=#{entityId} AND entity_type=#{entityType}"})
+    @Select({"SELECT COUNT(*) FROM" ,TABLE_NAME, " WHERE entity_id=#{entityId} AND entity_type=#{entityType} AND status=0"})
     int selectCommentCount(@Param("entityId") int entityId,
                            @Param("entityType") int entityType);
 }

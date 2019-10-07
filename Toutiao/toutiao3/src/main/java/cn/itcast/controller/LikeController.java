@@ -1,6 +1,9 @@
 package cn.itcast.controller;
 
 import cn.itcast.Utils.ToutiaoUtil;
+import cn.itcast.async.EventModel;
+import cn.itcast.async.EventProducer;
+import cn.itcast.async.EventType;
 import cn.itcast.model.EntityType;
 import cn.itcast.model.HostHolder;
 import cn.itcast.model.News;
@@ -30,12 +33,23 @@ public class LikeController {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private EventProducer eventProducer;
+
+
 
     @RequestMapping(path="/like", method = {RequestMethod.POST, RequestMethod.GET,})
     @ResponseBody
     @Transactional
     public String like(@RequestParam("newsId") int newsId){
         int userId = hostHolder.get().getId();
+
+        News news =newsService.selectById(newsId);
+        eventProducer.fireEvent(new EventModel(EventType.LIKE)
+        .setActorId(hostHolder.get().getId()).setEntityId(newsId)
+        .setEntityType(EntityType.ENTITY_NEWS).setEntityOwnerId(news.getUserId())
+        );
+
         long likeCount = likeService.like(userId,newsId, EntityType.ENTITY_NEWS);
         newsService.UpdateLikeCount(newsId, (int)likeCount);
         return ToutiaoUtil.getJson(0, String.valueOf(likeCount));

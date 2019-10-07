@@ -4,7 +4,6 @@ import cn.itcast.Utils.ToutiaoUtil;
 import cn.itcast.model.*;
 import cn.itcast.service.MessageService;
 import cn.itcast.service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

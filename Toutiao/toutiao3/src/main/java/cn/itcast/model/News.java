@@ -9,7 +9,7 @@ import java.util.Date;
 public class News {
     private int id;
     private String title;
-    private String link;
+    private String content;
     private String image;
     private int likeCount;
     private int commentCount;
@@ -32,12 +32,12 @@ public class News {
         this.title = title;
     }
 
-    public String getLink() {
-        return link;
+    public String getContent() {
+        return content;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getImage() {

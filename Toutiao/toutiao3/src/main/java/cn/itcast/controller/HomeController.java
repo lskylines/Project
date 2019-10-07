@@ -78,7 +78,7 @@ public class HomeController {
             NewsUser nu = new NewsUser();
             nu.setId(n.getId());
             nu.setTitle(n.getTitle());
-            nu.setLink(n.getLink());
+            nu.setContent(n.getContent());
             nu.setImage(n.getImage());
             nu.setLikeCount(n.getLikeCount());
             nu.setCommentCount(n.getCommentCount());

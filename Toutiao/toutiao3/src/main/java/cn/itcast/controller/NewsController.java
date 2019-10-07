@@ -42,13 +42,13 @@ public class NewsController {
     @ResponseBody
     public String addNews(@RequestParam("image") String image,
                           @RequestParam("title") String title,
-                          @RequestParam("link") String link){
+                          @RequestParam("link") String content){
         try{
             News news  = new News();
             news.setCreatedDate(new Date());
             news.setTitle(title);
             news.setImage(image);
-            news.setLink(link);
+            news.setContent(content);
             if(hostHolder.get()!=null){
                 //登陆，使用hostHolder获取当前用户id
                 news.setUserId(hostHolder.get().getId());
